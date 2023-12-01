@@ -24,11 +24,6 @@ def word_to_digit(match: re.Match):
 
 
 with open("input.txt", "r") as fd:
-    # for line in fd.readlines():
-    #     word_matches = re.findall(r"(?=(one|two|three|four|five|six|seven|eight|nine))", line)
-    #     if len(word_matches) > 0:
-    #         # handle word matches
-
     sum = 0
     for line in fd.readlines():
         words_to_digits = re.sub(
@@ -43,20 +38,4 @@ with open("input.txt", "r") as fd:
         )
         sum += int(digits_only[0] + digits_only[-1])
 
-    res = sum(
-        re.sub(
-            r"[^\d]",
-            "",
-            words_to_digits
-        )
-        for words_to_digits in (
-            re.sub(
-                r"(?=(one|two|three|four|five|six|seven|eight|nine))",
-                word_to_digit,
-                line
-            )
-            for line in fd.readlines()
-        )
-    )
-
-print(res)
+    print(sum)
